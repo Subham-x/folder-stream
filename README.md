@@ -36,7 +36,8 @@ Most users fail because they forget to add the folder to their System PATH. If y
 ---
 
 ### Running Demo
-<img src="assets/final-output.png" width="550"> 
+<img src="assets/final-output.png" width="150"> 
+[Open Full Image](assets/final-output.png)
 
 ---
 
