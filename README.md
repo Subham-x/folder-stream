@@ -12,12 +12,17 @@
 - 🍀See how to setup [Open SETUP.md](docs/SETUP.md)
 
 ### 📁 Launch from Explorer
-<img src="assets/file-explorer-demo.png" width="550"> 
-[View GIF Demo](https://raw.githubusercontent.com/Subham-x/folder-stream/main/assets/demo.gif)
+
+<img src="assets/file-explorer-demo.png" width="550">
+
+👉 [View GIF Demo](assets/demo.gif)
 
 ---
 ### 🌸 How to Lauch
-**Open Terminal in any folder** ⮕ **Type `serve`** ⮕ **Scan QR**
+- **Open Terminal in any folder** ⮕ **Type `serve`** ⮕ **Scan QR**
+
+>
+
 <img src="assets/terminal-demo.png" width="550"> 
 
 
@@ -37,6 +42,7 @@ Most users fail because they forget to add the folder to their System PATH. If y
 
 ### Running Demo
 <img src="assets/final-output.png" width="150"> 
+
 [Open Full Image](assets/final-output.png)
 
 ---
