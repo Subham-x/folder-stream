@@ -4,7 +4,7 @@
 
 Folder-Stream is a ultra-lightweight, zero-config Python server designed to turn any local directory into a beautiful, mobile-friendly web explorer on your LAN.
 
-- 🍀See how to setup [Open SETUP.md](SETUP.md)
+- 🍀See how to setup [Open SETUP.md](docs/SETUP.md)
 
 ### 📁 Launch from Explorer
 <img src="assets/demo.gif" width="550">
@@ -22,14 +22,14 @@ Just run `serve.bat` inside the folder you want to share. That's it.
 ---
 
 ### ⚠️ [CRITICAL: READ THIS FIRST (Setup)](SETUP.md)
-Most users fail because they forget to add the folder to their System PATH. If you want to use `serve` from any folder like a pro, **[follow the 2-minute setup here](SETUP.md)**.
+Most users fail because they forget to add the folder to their System PATH. If you want to use `serve` from any folder like a pro, **[follow the 2-minute setup here](docs/SETUP.md)**.
 
 ---
 
 ### 📖 Documentation
-- **[Setup & Global Access](SETUP.md)** - How to use `serve` everywhere.
-- **[Security & Privacy](PRIVACY.md)** - Why your data is safe.
-- **[Version History](CHANGELOG.md)** - The journey to v2.4.
+- **[Setup & Global Access](docs/SETUP.md)** - How to use `serve` everywhere.
+- **[Security & Privacy](docs/PRIVACY.md)** - Why your data is safe.
+- **[Version History](docs/CHANGELOG.md)** - The journey to v2.4.
 
 ### 🛠 Features
 - **Minimal UI:** Modern, responsive, and adaptive dark/light mode.
