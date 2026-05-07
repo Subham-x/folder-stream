@@ -35,6 +35,11 @@ Most users fail because they forget to add the folder to their System PATH. If y
 
 ---
 
+### Running Demo
+<img src="assets/final-output.png" width="550"> 
+
+---
+
 ### 📖 Documentation
 - **[Setup & Global Access](docs/SETUP.md)** - How to use `serve` everywhere.
 - **[Security & Privacy](docs/PRIVACY.md)** - Why your data is safe.
