@@ -8,7 +8,7 @@ Folder-Stream is a ultra-lightweight, zero-config Python server designed to turn
 
 ### 📁 Launch from Explorer
 <video controls width="700">
-  <source src="assets/demo.mp4" type="video/mp4">
+  <source src="https://raw.githubusercontent.com/Subham-x/folder-stream/main/assets/demo.mp4" type="video/mp4">
 </video>
 
 ### 🌸 How to Lauch
