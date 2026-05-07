@@ -18,7 +18,7 @@
 👉 [View GIF Demo](assets/demo.gif)
 
 ---
-### 🌸 How to Lauch
+### `❯_` Launch from Terminal
 - **Open Terminal in any folder** ⮕ **Type `serve`** ⮕ **Scan QR**
 
 >
@@ -30,8 +30,11 @@
 C:\Projects\demo-web-project> serve
 ```
 
+---
+
 ### ▶️ Quick Start
-Just run `serve.bat` inside the folder you want to share. That's it.
+- **Way 1** : Type `serve` in **Command Prompt** or **File Explorer** to generate LAN IP address.
+- **Way 2** : Just run `serve.bat` inside the folder you want to share. That's it.
 
 ---
 
