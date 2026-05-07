@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer - {directory}</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #f9fff9 100%);
+            --surface: rgba(255, 255, 255, 0.85);
+            --text-primary: #1b1b1b;
+            --text-secondary: #5f5f5f;
+            --accent: #0078d4;
+            --border: rgba(0, 0, 0, 0.1);
+            --item-hover: rgba(0, 0, 0, 0.05);
+            --header-bg: rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #101620 0%, #2c394a 100%);
+            --surface: rgba(44, 44, 44, 0.85);
+            --text-primary: #ffffff;
+            --text-secondary: #adadad;
+            --accent: #4cc2ff;
+            --border: rgba(255, 255, 255, 0.1);
+            --item-hover: rgba(255, 255, 255, 0.08);
+            --header-bg: rgba(30, 30, 30, 0.5);
+            --shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) {
+                --bg-gradient: linear-gradient(135deg, #101620 0%, #2c394a 100%);
+                --surface: rgba(44, 44, 44, 0.85);
+                --text-primary: #ffffff;
+                --text-secondary: #adadad;
+                --accent: #4cc2ff;
+                --border: rgba(255, 255, 255, 0.1);
+                --item-hover: rgba(255, 255, 255, 0.08);
+                --header-bg: rgba(30, 30, 30, 0.5);
+                --shadow: 0 8px 32px rgba(0,0,0,0.3);
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background 0.3s ease;
+        }
+
+        .explorer {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        header {
+            padding: 12px 20px;
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .controls { display: flex; gap: 8px; }
+
+        .btn {
+            background: var(--item-hover);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: var(--border); }
+        .btn-kill { color: #ff4d4d; border-color: rgba(255, 77, 77, 0.3); }
+        .btn-kill:hover { background: #ff4d4d; color: white; }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .breadcrumb a:hover { background: var(--item-hover); }
+
+        .list-container { padding: 8px; }
+
+        .item { border-radius: 6px; margin-bottom: 2px; }
+        .item a {
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .item:hover { background: var(--item-hover); }
+        .item-parent { font-weight: bold; background: rgba(0, 120, 212, 0.08) !important; }
+
+        .icon { margin-right: 16px; font-size: 20px; width: 24px; text-align: center; }
+        .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        @media (max-width: 640px) {
+            body { padding: 0; }
+            .explorer { border-radius: 0; border: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="explorer">
+        <header>
+            <div class="breadcrumb">{breadcrumb}</div>
+            <div class="controls">
+                <button class="btn" onclick="toggleTheme()" id="themeBtn">🌓 Theme</button>
+                <button class="btn btn-kill" onclick="killServer()">🛑 KILL</button>
+            </div>
+        </header>
+        <div class="list-container">
+            {items}
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        }
+
+        // Restore theme
+        const saved = localStorage.getItem('theme');
+        if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+        async function killServer() {
+            if (confirm("Are you sure you want to STOP the server? You will lose access until it is manually restarted.")) {
+                try {
+                    await fetch('/__kill__');
+                    document.body.innerHTML = '<div style="text-align:center; padding:50px; font-family:sans-serif;"><h1>Server Stopped</h1><p>You can close this tab now.</p></div>';
+                } catch(e) {
+                    alert("Server stopped.");
+                    window.close();
+                }
+            }
+        }
+    </script>
+</body>
+</html>
