@@ -1,2 +1,2 @@
 @echo off
-python "%~dp0Server.py"
+python "%~dp0src\Server.py"
